@@ -23,14 +23,14 @@ public class DataInicializer {
 
     @PostConstruct
     public void initialize() {
-        roleService.saveRole (new Role("ROLE_ADMIN"));
+        roleService.saveRole(new Role("ROLE_ADMIN"));
         roleService.saveRole(new Role("ROLE_USER"));
         Set<Role> adminRole = new HashSet<>();
         Set<Role> userRole = new HashSet<>();
-       adminRole.add(roleService.findRoleByRoleName("ROLE_ADMIN"));
-       userRole.add(roleService.findRoleByRoleName("ROLE_USER"));
-        userService.save(new User("a@a.ru", "Sdasd", "pass", "asmin",  adminRole));
-        userService.save(new User("u@u.ru", "Asdasdas", "pass", "asd",  userRole));
+        adminRole.add(roleService.findRoleByRoleName("ROLE_ADMIN"));
+        userRole.add(roleService.findRoleByRoleName("ROLE_USER"));
+        userService.save(new User("a@a.ru", "Sdasd", "pass", "asmin", adminRole));
+        userService.save(new User("u@u.ru", "Asdasdas", "pass", "asd", userRole));
 
 
     }

@@ -1,15 +1,13 @@
-
-
-const tbody=document.querySelector("#tableBody");                                //возвращает все элементы
-const tableOfUsers=document.querySelector("#tableAllUsers");
-let str="";
-$(document).ready(async function() {                                                 // запускает код, когда ДОМ становится безопасной для работв, эта функция возвращает промис
-    let users=await fetch("http://localhost:8080/api/admin/users").then(r =>r.json());             // заставит ждать до тех пор, пока промис не выполнится
+const tbody = document.querySelector("#tableBody");                                //возвращает все элементы
+const tableOfUsers = document.querySelector("#tableAllUsers");
+let str = "";
+$(document).ready(async function () {                                                 // запускает код, когда ДОМ становится безопасной для работв, эта функция возвращает промис
+    let users = await fetch("http://localhost:8080/api/admin/users").then(r => r.json());             // заставит ждать до тех пор, пока промис не выполнится
     const template = document.querySelector('#product');
     users.forEach((u) => {
         let rol = "";
         u.roles.forEach((u) => {
-            rol+= u.withoutPrefix + "  ";
+            rol += u.withoutPrefix + "  ";
         });
         str += `<tr id="dele${u.id}"><td>${u.id}</td> 
 <td>${u.firstName}</td>
@@ -24,7 +22,6 @@ $(document).ready(async function() {                                            
 })
 
 
-
 $(document).ready(async function () {
     let rolles = await fetch("http://localhost:8080/api/admin/roles").then(r => r.json());         //настройки для fetch можно указать после url
     let rol = "";
@@ -35,7 +32,6 @@ ${rol}
 </select>`;
     document.getElementById('selector').innerHTML = sel;      // получение по id
 })
-
 
 
 async function rol(userRol) {
@@ -53,7 +49,6 @@ ${rol}
 }
 
 
-
 $(document).ready(async function () {
     let principal = await fetch("http://localhost:8080/api/user/info").then(r => r.json());
     for (let i = 0; i < principal.roles.length; i++) {
@@ -64,8 +59,6 @@ $(document).ready(async function () {
     $('#userpanel').hide();
     lookTablePrincipal();
 })
-
-
 
 
 async function lookTablePrincipal() {
@@ -102,7 +95,6 @@ async function lookTablePrincipal() {
 }
 
 
-
 $('.action').on('click', async function () {
     lookTablePrincipal();
 });
@@ -114,7 +106,6 @@ $(document).ready(async function () {
     });
     document.getElementById('black').innerHTML = `<b>${principal.email}</b>` + ' with roles: ' + `<b>${rol}</b>`;
 })
-
 
 
 const usernameCreate = document.getElementById('usernameCreate');
@@ -144,6 +135,7 @@ $(document).ready(async function () {
         passwordCreate.value = "";
         document.getElementById('select').value = "";
         document.getElementById('ad_pan').click();
+        location.reload()
         let rol = "";
         u.roles.forEach((u) => {
             rol += u.withoutPrefix + " \n";
@@ -166,7 +158,6 @@ const lastnameEdit = document.getElementById('lastnameFormEdit');
 const emailEdit = document.getElementById('emailFormEdit');
 const passwordEdit = document.getElementById('passwordFormEdit');
 let row = "";
-
 
 
 $(document).ready(function () {
@@ -204,10 +195,6 @@ $(document).ready(function () {
         $('#editModal').modal('hide');
     })
 });
-
-
-
-
 
 
 const on = (element, even, selector, handle) => {

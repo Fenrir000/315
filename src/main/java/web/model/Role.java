@@ -29,11 +29,13 @@ public class Role implements GrantedAuthority {
     public Role(String role) {
         this.role = role;
     }
+
     public String getWithoutPrefix() {
         System.out.println(this.getRole());
         return role.substring(5);
 
     }
+
     @Override
     public String getAuthority() {
         return role;

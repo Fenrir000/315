@@ -8,6 +8,7 @@ import web.repository.RoleDAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 
@@ -52,11 +53,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Transactional(readOnly = true)
     public List<Role> listByRole(List<String> names) {
-        List<Role> roles = new ArrayList<>();
-        List<Role> listRoles = roleDAO.findAllRole();
-        for (String name : names) {
-            listRoles.stream().filter(role -> role.getRole().contains(name)).forEach(roles::add);
-        }
-        return roles;
+        return roleDAO.findAllRole().stream()
+                .filter(role -> names.stream().anyMatch(name -> role.getRole().contains(name)))
+                .collect(Collectors.toList());
     }
+
 }

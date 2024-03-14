@@ -21,7 +21,7 @@ public class UserRestController {
     }
 
     @GetMapping("/info")
-    public ResponseEntity<User> getPrincipal (Principal principal) {
+    public ResponseEntity<User> getPrincipal(Principal principal) {
         return new ResponseEntity<>(userService.findByEmail(principal.getName()).get(), HttpStatus.OK);
     }
 }
